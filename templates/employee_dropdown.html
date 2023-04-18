@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Employee</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <style>
+        .center {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            margin-top: 25vh;
+        }
+        .form-wrapper {
+            width: 18%;
+            padding: 10px;
+            text-align: center;
+        }
+        .submit-wrapper {
+            width: 100%;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="center">
+        <div class="form-wrapper">
+            <form action="" method="post">
+                {% csrf_token %}
+                <select id="employee" name="employee" style="width:100%;" search>
+                    <option value="" selected disabled>Select an employee</option>
+                    {% for employee in employees %}
+                    <option  value="{{ employee.id }}">{{ employee.first_name }} {{ employee.last_name }}</option>
+                    {% endfor %}
+                </select>
+                <div class="submit-wrapper">
+                    <button type="submit">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        console.log(53);
+        $(document).ready(function() {
+            $('#employee').select2({
+                placeholder: 'Select an employee',
+                allowClear: true
+            });
+        });
+    </script>
+</body>
+</html>
